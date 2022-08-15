@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title>Youtube Audio player</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+ </head>
+<body>
+
+ <div id="y"></div>
+  <button id="r" onclick="location.href = '/y.html'" class="btn btn-success btn-block click-btn-down" style="border-radius: 20px;">reset</button>
+        <script src="https://www.youtube.com/iframe_api"></script>
+ <script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
+  
+  
+  <div class="container p-3 my-3 bg-dark text-white" id="ur">
+<div class="card" style="background: none; border-left: 3px solid #0099FF; border-radius: 20px; margin-left: 5px; margin-right: 5px; padding: 5px;">
+<div class="card-body">
+<div class="card-title">
+<h5>Youtube Audio Player</h5>
+</div>
+<hr>
+<div class="card-text">
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label class="text-weight"><b>Video Link:</b></label>
+
+  <input type="url" id="url" name="link" class="form-control link" required="">
+  </div>
+
+</div>
+
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group mt-4 download-video">
+  
+<button class="btn btn-success btn-block click-btn-down" style="border-radius: 20px;" type="submit">Click Me</button>
+ </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+  
+<script>
+  $(document).ready(function() {
+            if(get("url")){
+     let yid = get("url").replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", "");     
+     $("#y").html(`<div data-video="${yid}" data-autoplay="0" data-loop="1" id="youtube-audio">
+ </div>`);
+     $("#ur").hide(); 
+     $("#r").show();
+      } else {
+     $("#r").hide();   
+}
+         
+});
+function get(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+  
+  $(".click-btn-down").click(function(){
+      var link = $(".link").val();
+   location.href = "/y.html?url="+link; 
+    });
+</script>
+</body>
+</html>
